@@ -1,0 +1,22 @@
+GET localhost:8080/router/square/191
+
+###
+GET localhost:8080/calculator/1/2
+OP: +
+
+###
+GET localhost:8080/calculator/1/2
+OP: -
+
+###
+GET localhost:8080/calculator/1/2
+OP: *
+
+###
+GET localhost:8080/calculator/1/0
+OP: /
+
+
+###
+GET localhost:8080/calculator/1/0
+

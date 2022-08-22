@@ -12,8 +12,8 @@ public class InputValidationHandler {
     @ExceptionHandler(InputValidationException.class)
     public ResponseEntity<InputFailedValidationResponse> handleException(InputValidationException e) {
         var response = new InputFailedValidationResponse();
-        response.setErrorCode(InputValidationException.getErrorCode());
-        response.setMessage(InputValidationException.getMSG());
+        response.setErrorCode(e.getErrorCode());
+        response.setMessage(e.getMessage());
         response.setInput(e.getInput());
 
         return ResponseEntity.badRequest().body(response);

@@ -3,8 +3,8 @@ package me.potato.udemywebflux;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class UdemyWebfluxApplicationTests {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+class BaseTest {
 
     @Test
     void contextLoads() {

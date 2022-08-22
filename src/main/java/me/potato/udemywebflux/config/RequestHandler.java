@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import me.potato.udemywebflux.dto.InputFailedValidationResponse;
 import me.potato.udemywebflux.dto.MultiplyRequestDto;
 import me.potato.udemywebflux.dto.Response;
+import me.potato.udemywebflux.exception.InputValidationException;
 import me.potato.udemywebflux.service.ReactiveMathService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -17,19 +18,19 @@ public class RequestHandler {
     private final ReactiveMathService mathService;
 
     public Mono<ServerResponse> squareHandler(ServerRequest request) {
-        var input  = request.pathVariable("input");
+        var input = request.pathVariable("input");
         var result = mathService.findSquare(Integer.parseInt(input));
         return ServerResponse.ok().body(result, Response.class);
     }
 
     public Mono<ServerResponse> tableHandler(ServerRequest request) {
-        var input  = request.pathVariable("input");
+        var input = request.pathVariable("input");
         var result = mathService.multiplicationTableStream(Integer.parseInt(input));
         return ServerResponse.ok().body(result, Response.class);
     }
 
     public Mono<ServerResponse> tableStreamHandler(ServerRequest request) {
-        var input  = request.pathVariable("input");
+        var input = request.pathVariable("input");
         var result = mathService.multiplicationTableStream(Integer.parseInt(input));
         return ServerResponse.ok()
                 .contentType(MediaType.TEXT_EVENT_STREAM)
@@ -37,7 +38,7 @@ public class RequestHandler {
     }
 
     public Mono<ServerResponse> multiplyHandler(ServerRequest request) {
-        var body   = request.bodyToMono(MultiplyRequestDto.class);
+        var body = request.bodyToMono(MultiplyRequestDto.class);
         var result = mathService.multiply(body);
         return ServerResponse.ok()
                 .body(result, Response.class);
@@ -45,12 +46,11 @@ public class RequestHandler {
 
     public Mono<ServerResponse> squareHandlerWithValidation(ServerRequest request) {
         var input = Integer.parseInt(request.pathVariable("input"));
-        if (input < 10 || input > 20){
-            var response = new InputFailedValidationResponse();
-            return ServerResponse.badRequest().build();
-        }
+        if (input < 10 || input > 20)
+            return Mono.error(new InputValidationException(input));
 
         var result = mathService.findSquare(input);
         return ServerResponse.ok().body(result, Response.class);
+
     }
 }
