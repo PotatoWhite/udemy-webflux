@@ -12,14 +12,13 @@ import reactor.netty.resources.LoopResources;
 public class UdemyWebfluxApplication {
 
     public static void main(String[] args) {
-        System.setProperty("reactor.schedulers.defaultPoolSize", "30");
         SpringApplication.run(UdemyWebfluxApplication.class, args);
     }
 
     @Bean
     public ReactiveWebServerFactory reactiveWebServerFactory() {
-        NettyReactiveWebServerFactory factory = new NettyReactiveWebServerFactory();
-        final ReactorResourceFactory reactorResourceFactory = new ReactorResourceFactory();
+        var factory = new NettyReactiveWebServerFactory();
+        final var reactorResourceFactory = new ReactorResourceFactory();
         reactorResourceFactory.setLoopResources(LoopResources.create("http", 1000, true));
         reactorResourceFactory.setUseGlobalResources(false);
         factory.setResourceFactory(reactorResourceFactory);
