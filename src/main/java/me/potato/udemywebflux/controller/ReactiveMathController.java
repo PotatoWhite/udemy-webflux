@@ -18,7 +18,8 @@ public class ReactiveMathController {
 
     @GetMapping("/square/{input}")
     private Mono<Response> findSquare(@PathVariable Integer input) {
-        return mathService.findSquare(input);
+        return mathService.findSquare(input)
+                .defaultIfEmpty(new Response(-1));
     }
 
     @GetMapping("/table/{input}")
@@ -30,7 +31,7 @@ public class ReactiveMathController {
 
     @GetMapping(path="/table/{input}/stream", produces="text/event-stream")
     private Flux<Response> multiplicationTableStream(@PathVariable Integer input) {
-        return mathService.multiplicationTableStream(input);
+        return mathService.multiplicationTableStream(input).log();
     }
 
     @GetMapping(path="/table/{input}/notstream", produces="text/event-stream")

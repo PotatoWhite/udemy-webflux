@@ -18,13 +18,6 @@ public class ReactiveMathService {
     }
 
     public Flux<Response> multiplicationTable(int input) {
-//        return Flux.range(1, 10)
-////                .doOnNext(i -> SleepUtil.sleepSeconds(1))
-//                .delayElements(Duration.ofSeconds(1))
-//                .doOnNext(i -> System.out.println("reactive-math-service processing: " + i + " " + Thread.currentThread().getName()))
-//                .map(i -> input * i)
-//                .map(Response::new);
-
         var result = IntStream.rangeClosed(1, 10)
                 .peek(i -> SleepUtil.sleepSeconds(1))
                 .peek(i -> System.out.println("math-service processing: " + i))
@@ -36,7 +29,6 @@ public class ReactiveMathService {
 
     public Flux<Response> multiplicationTableStream(int input) {
         return Flux.range(1, 10)
-//                .doOnNext(i -> SleepUtil.sleepSeconds(1))
                 .delayElements(Duration.ofSeconds(1))
                 .doOnNext(i -> System.out.println("reactive-math-service processing: " + i + " " + Thread.currentThread().getName()))
                 .map(i -> input * i)

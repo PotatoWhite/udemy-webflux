@@ -1,4 +1,4 @@
-package me.potato.udemywebflux;
+package me.potato.udemywebflux.webclient;
 
 
 import me.potato.udemywebflux.dto.Response;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.test.StepVerifier;
 
-public class Lec02GetSingleResponseTest extends BaseTest {
+public class Lec01GetSingleResponseTest extends BaseTest {
 
     @Autowired
     private WebClient webClient;

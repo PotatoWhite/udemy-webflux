@@ -26,8 +26,8 @@ public class ReactiveMathValidationController {
     }
 
     @GetMapping("/square/{input}/mono-throw")
-    public Mono<Response> findSquareOrMonoThrow(@PathVariable Integer input) {
-        return Mono.just(input)
+    public Mono<Response> findSquareOrMonoThrow(@PathVariable Mono<Integer> input) {
+        return input
                 .handle(((integer, sink) -> {
                     if (integer < 10 || integer > 20)
                         sink.error(new InputValidationException(integer));

@@ -1,4 +1,4 @@
-package me.potato.udemywebflux;
+package me.potato.udemywebflux.webclient;
 
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;

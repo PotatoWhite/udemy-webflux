@@ -1,4 +1,4 @@
-package me.potato.udemywebflux;
+package me.potato.udemywebflux.webclient;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +90,15 @@ public class Lec07QueryParamsTest extends BaseTest {
                 .expectNextMatches(r -> r == 20)
                 .verifyComplete();
 
+    }
+
+    @Test
+    public void getGroupByCKey() {
+        webClient.get()
+                .uri(URI -> URI.path("/getuser.api?userid={id}").build("nv_drive021"))
+                .retrieve()
+                .bodyToMono(String.class)
+                .doOnNext(System.out::println);
 
     }
 

@@ -1,4 +1,4 @@
-package me.potato.udemywebflux;
+package me.potato.udemywebflux.webclient;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

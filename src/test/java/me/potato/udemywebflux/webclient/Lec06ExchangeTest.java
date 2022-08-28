@@ -1,4 +1,4 @@
-package me.potato.udemywebflux;
+package me.potato.udemywebflux.webclient;
 
 import me.potato.udemywebflux.dto.InputFailedValidationResponse;
 import me.potato.udemywebflux.dto.Response;
@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
